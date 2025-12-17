@@ -28,13 +28,36 @@
 
  <div class="form-container">
 
+  <!-- SUCCESS MESSAGE (HIDDEN BY DEFAULT) -->
   <div id="successMessage" style="display:none;">
     <h3>Request Submitted ✅</h3>
     <p>
-      Thank you for contacting AnyRepair.  
+      Thank you for contacting AnyRepair.<br>
       Our team will call you shortly to schedule your doorstep diagnosis.
     </p>
   </div>
+
+  <!-- ACTUAL FORM (VISIBLE BY DEFAULT) -->
+  <form id="serviceForm">
+
+    <label>Your Name</label>
+    <input type="text" name="name" required>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>Location</label>
+    <input type="text" name="location" required>
+
+    <label>Laptop Issue</label>
+    <textarea name="issue" rows="4" required></textarea>
+
+    <button type="submit" class="btn">Submit Request</button>
+
+  </form>
+
+</div>
+
 
   <form id="serviceForm">
     ...
