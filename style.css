@@ -354,6 +354,37 @@
  }
 
 
+/* ===== FINAL FORCE MOBILE HERO FIX ===== */
+@media (max-width: 768px) {
+
+  /* Force hero container to stack */
+  .hero-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Force image sizing & position */
+  .hero-inner img {
+    width: 100% !important;
+    max-width: 340px !important;
+    margin: 0 auto 24px auto !important;
+  }
+
+  /* Force text centering */
+  .hero-inner h1,
+  .hero-inner p {
+    text-align: center !important;
+  }
+
+  /* Ensure text block doesn't float */
+  .hero-inner > div {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+}
+
 
 
 
