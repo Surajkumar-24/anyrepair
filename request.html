@@ -91,65 +91,67 @@
 
 <!-- FORM + GOOGLE SHEETS + WHATSAPP -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+console.log("Form script loaded");
 
-  const form = document.getElementById("serviceForm");
-  const successMsg = document.getElementById("successMessage");
-  const submitBtn = document.getElementById("submitBtn");
-  const whatsappLink = document.getElementById("whatsappLink");
+const form = document.getElementById("serviceForm");
+const successMsg = document.getElementById("successMessage");
+const submitBtn = document.getElementById("submitBtn");
+const whatsappLink = document.getElementById("whatsappLink");
 
-  if (!form || !successMsg || !submitBtn) {
-    console.error("Form elements missing");
-    return;
-  }
+if (!form || !successMsg || !submitBtn || !whatsappLink) {
+  console.error("One or more required elements missing");
+}
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log("Submit handler fired");
 
-    submitBtn.innerText = "Submitting...";
-    submitBtn.disabled = true;
+  submitBtn.innerText = "Submitting...";
+  submitBtn.disabled = true;
 
-    const name = form.name.value;
-    const phone = form.phone.value;
-    const location = form.location.value;
-    const issue = form.issue.value;
+  const name = form.name.value;
+  const phone = form.phone.value;
+  const location = form.location.value;
+  const issue = form.issue.value;
 
-    // 🔥 INSTANT UI RESPONSE
-    form.style.display = "none";
-    successMsg.style.display = "block";
+  // ✅ IMMEDIATE UI RESPONSE
+  form.style.display = "none";
+  successMsg.style.display = "block";
 
-    // 🔥 BUILD WHATSAPP LINK (NON-BLOCKING)
-    const whatsappText =
-      `New Laptop Repair Enquiry\n\n` +
-      `Name: ${name}\n` +
-      `Phone: ${phone}\n` +
-      `Location: ${location}\n` +
-      `Issue: ${issue}`;
+  // ✅ BUILD WHATSAPP URL
+  const whatsappText =
+    `New Laptop Repair Enquiry\n\n` +
+    `Name: ${name}\n` +
+    `Phone: ${phone}\n` +
+    `Location: ${location}\n` +
+    `Issue: ${issue}`;
 
-    whatsappLink.href =
-      "https://wa.me/918888298955?text=" +
-      encodeURIComponent(whatsappText);
+  const waURL =
+    "https://wa.me/918888298955?text=" +
+    encodeURIComponent(whatsappText);
 
-console.log("WhatsApp link set to:", whatsappLink.href);
+  whatsappLink.href = waURL;
+  console.log("WhatsApp URL:", waURL);
 
-    
-    // 🔥 BACKGROUND SUBMISSION TO GOOGLE SHEETS
-    fetch("https://script.google.com/macros/s/AKfycbyouUlC2BJ36LpMar7zUdeaad44BPWlDw93wRVDWhxfZOtpIeQ9bCNuBaPdSAdiMQ1_/exec", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify({
-        name,
-        phone,
-        location,
-        issue
-      })
-    }).catch(() => {
-      console.warn("Background submission failed");
-    });
+  // ✅ OPEN WHATSAPP AUTOMATICALLY
+  window.open(waURL, "_blank");
 
+  // ✅ BACKGROUND GOOGLE SHEETS SUBMISSION
+  fetch("https://script.google.com/macros/s/AKfycbyouUlC2BJ36LpMar7zUdeaad44BPWlDw93wRVDWhxfZOtpIeQ9bCNuBaPdSAdiMQ1_/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      name,
+      phone,
+      location,
+      issue
+    })
+  }).catch(() => {
+    console.warn("Background submission failed");
   });
 });
 </script>
+
 
 </body>
 </html>
