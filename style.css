@@ -380,6 +380,20 @@ form button {
   width: 100%;
 }
 
+#successMessage {
+  text-align: center;
+}
+
+#successMessage h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+#successMessage p {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
 
 /* ================= MOBILE STYLES ================= */
 @media (max-width: 768px) {
@@ -474,6 +488,7 @@ form button {
     max-width: 300px;
   }
 }
+
 
 
 
