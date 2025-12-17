@@ -380,6 +380,8 @@ form button {
   width: 100%;
 }
 
+/* ===== FORM SUCCESS MESSAGE ===== */
+
 #successMessage {
   text-align: center;
 }
@@ -393,6 +395,7 @@ form button {
   font-size: 15px;
   color: var(--text-muted);
 }
+
 
 
 /* ================= MOBILE STYLES ================= */
@@ -488,6 +491,7 @@ form button {
     max-width: 300px;
   }
 }
+
 
 
 
