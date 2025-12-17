@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", function () {
       issue: form.issue.value
     };
 
-    // 🔥 UI FIRST — do not wait for network
-    setTimeout(() => {
-      form.style.display = "none";
-      successMsg.style.display = "block";
-    }, 300);
+    requestAnimationFrame(() => {
+  form.style.display = "none";
+  successMsg.style.display = "block";
+});
+
 
     // 🔥 Background submission
     fetch("https://script.google.com/macros/s/AKfycbxHnURj7cTM5DxtMyqTfzI_8lkMoKRk-7EpWFo3DR9CwworXFp-W-bPExkB437kVugw/exec", {
