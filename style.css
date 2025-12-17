@@ -340,6 +340,45 @@
     color: var(--text-muted);
   }
   
+/* ================= ENQUIRY FORM ================= */
+
+.form-container {
+  max-width: 520px;
+  margin: 40px auto 0;
+  background: white;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid var(--border-soft);
+}
+
+form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 18px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  font-family: inherit;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--olive);
+}
+
+form button {
+  margin-top: 28px;
+  width: 100%;
+}
 
 
 /* ================= MOBILE STYLES ================= */
@@ -435,6 +474,7 @@
     max-width: 300px;
   }
 }
+
 
 
 
