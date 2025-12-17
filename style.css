@@ -88,7 +88,18 @@
   .nav-links a:hover::after {
     width: 100%;
   }
-  
+
+/* ACTIVE NAV LINK */
+.nav-links a.active {
+  color: var(--olive-dark);
+  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+
   /* HERO */
   .hero {
     background: var(--olive-bg);
@@ -146,9 +157,24 @@
     text-decoration: none;
   }
   
-  .btn:hover {
-    background: var(--olive-dark);
-  }
+  .btn {
+  transition: 
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--olive-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
   
   /* STATS DASHBOARD */
 .stats-section {
@@ -365,6 +391,22 @@
   /* SECTIONS */
   .section {
     padding: 48px 20px;
+  }
+}
+
+/* VERY SMALL PHONES (iPhone SE, etc.) */
+@media (max-width: 375px) {
+
+  .hero-inner {
+    padding: 44px 16px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero img {
+    max-width: 300px;
   }
 }
 
