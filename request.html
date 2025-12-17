@@ -30,12 +30,20 @@
 
   <!-- SUCCESS MESSAGE (HIDDEN INITIALLY) -->
   <div id="successMessage" style="display: none;">
-    <h3>Request Submitted ✅</h3>
-    <p>
-      Thank you for contacting AnyRepair.<br>
-      Our team will call you shortly to schedule your doorstep diagnosis.
-    </p>
-  </div>
+  <h3>Request Submitted ✅</h3>
+  <p>
+    Thank you for contacting AnyRepair.<br>
+    Our team will call you shortly to schedule your doorstep diagnosis.
+  </p>
+
+  <a 
+    id="whatsappLink"
+    class="btn"
+    style="margin-top:20px; display:inline-block;"
+    target="_blank">
+    Chat with us on WhatsApp
+  </a>
+</div>
 
   <!-- FORM -->
   <form id="serviceForm">
@@ -83,62 +91,49 @@
 
 <!-- Hamburger JS -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
-
-    hamburger.addEventListener("click", function () {
-      navLinks.classList.toggle("active");
-    });
-  });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const form = document.getElementById("serviceForm");
-  const successMsg = document.getElementById("successMessage");
-  const submitBtn = document.getElementById("submitBtn");
-
-  if (!form || !successMsg || !submitBtn) {
-    console.error("Form elements not found");
-    return;
-  }
-
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    // 🔥 Immediate perceived feedback
-    submitBtn.innerText = "Submitting...";
-    submitBtn.disabled = true;
+  submitBtn.innerText = "Submitting...";
+  submitBtn.disabled = true;
 
-    const formData = {
-      name: form.name.value,
-      phone: form.phone.value,
-      location: form.location.value,
-      issue: form.issue.value
-    };
+  const name = form.name.value;
+  const phone = form.phone.value;
+  const location = form.location.value;
+  const issue = form.issue.value;
 
-    requestAnimationFrame(() => {
+  // 🔥 BUILD WHATSAPP MESSAGE
+  const whatsappMessage = 
+    `New Laptop Repair Enquiry\n\n` +
+    `Name: ${name}\n` +
+    `Phone: ${phone}\n` +
+    `Location: ${location}\n` +
+    `Issue: ${issue}`;
+
+  const whatsappURL = 
+    `https://wa.me/918888298955?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // 🔥 UPDATE WHATSAPP LINK
+  document.getElementById("whatsappLink").href = whatsappURL;
+
+  // 🔥 IMMEDIATE UI FEEDBACK
   form.style.display = "none";
   successMsg.style.display = "block";
-});
 
-
-    // 🔥 Background submission
-    fetch("https://script.google.com/macros/s/AKfycbxHnURj7cTM5DxtMyqTfzI_8lkMoKRk-7EpWFo3DR9CwworXFp-W-bPExkB437kVugw/exec", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(formData)
+  // 🔥 BACKGROUND SUBMISSION TO SHEET
+  fetch("https://script.google.com/macros/s/AKfycbwri7Jhi2sFTyaAPKinO-dXVLke-T20NwdQ7NT8G80KpK42SJh6Fnm5aTDjpR3hiOat/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      name,
+      phone,
+      location,
+      issue
     })
-    .catch(() => {
-      console.warn("Background submission failed");
-    });
-  });
-
+  }).catch(() => {});
 });
-</script>
 
+</script>
 
   
 </body>
