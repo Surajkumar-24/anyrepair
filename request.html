@@ -44,7 +44,15 @@
     <input type="text" name="name" required>
 
     <label>Phone Number</label>
-    <input type="tel" name="phone" required>
+    <input 
+  type="tel"
+  name="phone"
+  required
+  inputmode="numeric"
+  pattern="[0-9]{10}"
+  maxlength="10"
+  placeholder="10-digit mobile number"
+  title="Enter a valid 10-digit mobile number">
 
     <label>Location</label>
     <input type="text" name="location" required>
