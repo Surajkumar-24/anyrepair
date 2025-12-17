@@ -29,7 +29,7 @@
 <div class="form-container">
 
   <!-- SUCCESS MESSAGE (HIDDEN INITIALLY) -->
-  <div id="successMessage">
+  <div id="successMessage" style="display: none;">
     <h3>Request Submitted ✅</h3>
     <p>
       Thank you for contacting AnyRepair.<br>
@@ -100,10 +100,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const successMsg = document.getElementById("successMessage");
   const submitBtn = document.getElementById("submitBtn");
 
+  if (!form || !successMsg || !submitBtn) {
+    console.error("Form elements not found");
+    return;
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Immediate UI feedback
+    // 🔥 Immediate perceived feedback
     submitBtn.innerText = "Submitting...";
     submitBtn.disabled = true;
 
@@ -114,20 +119,20 @@ document.addEventListener("DOMContentLoaded", function () {
       issue: form.issue.value
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbxH2_sLUcLevc0ydz6aJzkf9Ff7OYZSd10EA6brffTCUXhe6VDiWTNW7gfCJc64nRur/exec", {
+    // 🔥 UI FIRST — do not wait for network
+    setTimeout(() => {
+      form.style.display = "none";
+      successMsg.style.display = "block";
+    }, 300);
+
+    // 🔥 Background submission
+    fetch("https://script.google.com/macros/s/AKfycbxHnURj7cTM5DxtMyqTfzI_8lkMoKRk-7EpWFo3DR9CwworXFp-W-bPExkB437kVugw/exec", {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify(formData)
     })
-    .then(() => {
-      // 🔥 FORCE UI STATE CHANGE
-      form.style.display = "none";
-      successMsg.style.display = "block";
-    })
     .catch(() => {
-      submitBtn.innerText = "Submit Request";
-      submitBtn.disabled = false;
-      alert("Something went wrong. Please try again.");
+      console.warn("Background submission failed");
     });
   });
 
