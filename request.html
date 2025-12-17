@@ -88,21 +88,21 @@
     e.preventDefault();
 
     const formData = {
-      name: this.querySelector('input[placeholder="Enter your full name"]').value,
-      phone: this.querySelector('input[placeholder="10-digit mobile number"]').value,
-      location: this.querySelector('input[placeholder="Eg. Wakad, Baner, Hinjewadi"]').value,
-      issue: this.querySelector('textarea').value
+      name: this.name.value,
+      phone: this.phone.value,
+      location: this.location.value,
+      issue: this.issue.value
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbwqEg3VMqIA_BEyMsw-dFuU3AaKRZed6ygXaZj2j5Cf503GYBwPfMBYGaGOVlrAUCXB/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxRxTXVaICiiPIcFcijylSACueEKD0h8qjyvczW840_k21qQQ67Z7QEIDT4YYWZnKk/exec", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify(formData)
     })
     .then(() => {
-  document.getElementById("serviceForm").style.display = "none";
-  document.getElementById("successMessage").style.display = "block";
-})
-
+      document.getElementById("serviceForm").style.display = "none";
+      document.getElementById("successMessage").style.display = "block";
+    })
     .catch(() => {
       alert("Something went wrong. Please try again.");
     });
