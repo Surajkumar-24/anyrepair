@@ -101,49 +101,47 @@
 </script>
   
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("serviceForm");
+  const successMsg = document.getElementById("successMessage");
+  const submitBtn = document.getElementById("submitBtn");
+
+  if (!form || !successMsg || !submitBtn) {
+    console.error("Required form elements missing");
+    return;
+  }
+
   form.addEventListener("submit", function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  submitBtn.innerText = "Submitting...";
-  submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
 
-  const name = form.name.value;
-  const phone = form.phone.value;
-  const location = form.location.value;
-  const issue = form.issue.value;
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      location: form.location.value,
+      issue: form.issue.value
+    };
 
-  // 🔥 BUILD WHATSAPP MESSAGE
-  const whatsappMessage = 
-    `New Laptop Repair Enquiry\n\n` +
-    `Name: ${name}\n` +
-    `Phone: ${phone}\n` +
-    `Location: ${location}\n` +
-    `Issue: ${issue}`;
+    // 🔥 IMMEDIATE UI RESPONSE
+    form.style.display = "none";
+    successMsg.style.display = "block";
 
-  const whatsappURL = 
-    `https://wa.me/918888298955?text=${encodeURIComponent(whatsappMessage)}`;
+    // 🔥 BACKGROUND SUBMISSION (SAFE)
+    fetch("https://script.google.com/macros/s/AKfycbyouUlC2BJ36LpMar7zUdeaad44BPWlDw93wRVDWhxfZOtpIeQ9bCNuBaPdSAdiMQ1_/exec", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(formData)
+    }).catch(() => {
+      console.warn("Submission failed");
+    });
+  });
 
-  // 🔥 UPDATE WHATSAPP LINK
-  document.getElementById("whatsappLink").href = whatsappURL;
-
-  // 🔥 IMMEDIATE UI FEEDBACK
-  form.style.display = "none";
-  successMsg.style.display = "block";
-
-  // 🔥 BACKGROUND SUBMISSION TO SHEET
-  fetch("https://script.google.com/macros/s/AKfycbwri7Jhi2sFTyaAPKinO-dXVLke-T20NwdQ7NT8G80KpK42SJh6Fnm5aTDjpR3hiOat/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify({
-      name,
-      phone,
-      location,
-      issue
-    })
-  }).catch(() => {});
 });
-
 </script>
+
 
   
 </body>
