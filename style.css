@@ -104,7 +104,24 @@
   .hero {
     background: var(--olive-bg);
   }
-  
+
+/* SUBTLE PAGE LOAD ANIMATION */
+.hero {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
   .hero-inner {
     max-width: 1200px;
     margin: auto;
@@ -119,7 +136,11 @@
     width: 100%;
     max-width: 380px;
     border-radius: 12px;
-  
+
+       /* ✅ ADD THESE TWO LINES */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+      
     /* 🔥 KEY BLEND FIXES */
     background: #ffffff;
     padding: 5px;
@@ -155,14 +176,15 @@
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-  }
-  
-  .btn {
+
+       /* ✅ ADD THESE */
   transition: 
     background 0.2s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
-}
+  will-change: transform;
+  }
+  
 
 .btn:hover {
   background: var(--olive-dark);
@@ -231,7 +253,11 @@
     margin: auto;
     padding: 54px 28px;
   }
-  
+
+.section {
+  animation: fadeIn 0.5s ease-out;
+}
+
   .section h2 {
     font-size: 34px;
     font-weight: 700;
@@ -409,5 +435,6 @@
     max-width: 300px;
   }
 }
+
 
 
