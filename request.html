@@ -52,7 +52,10 @@
     <label>Laptop Issue</label>
     <textarea name="issue" rows="4" required></textarea>
 
-    <button type="submit" class="btn">Submit Request</button>
+   <button type="submit" class="btn" id="submitBtn">
+  Submit Request
+</button>
+
 
   </form>
 
@@ -84,30 +87,45 @@
 </script>
 
 <script>
-  document.getElementById("serviceForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("serviceForm");
+    const submitBtn = document.getElementById("submitBtn");
 
-    const formData = {
-      name: this.name.value,
-      phone: this.phone.value,
-      location: this.location.value,
-      issue: this.issue.value
-    };
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbxRxTXVaICiiPIcFcijylSACueEKD0h8qjyvczW840_k21qQQ67Z7QEIDT4YYWZnKk/exec", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(formData)
-    })
-    .then(() => {
-      document.getElementById("serviceForm").style.display = "none";
-      document.getElementById("successMessage").style.display = "block";
-    })
-    .catch(() => {
-      alert("Something went wrong. Please try again.");
+      // 🔥 INSTANT FEEDBACK
+      submitBtn.innerText = "Submitting...";
+      submitBtn.disabled = true;
+
+      const formData = {
+        name: form.name.value,
+        phone: form.phone.value,
+        location: form.location.value,
+        issue: form.issue.value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbwtQK7TzVmBUSnE2r-LRKwYoMxHiAlQ3t55mkYThyAstsSnsQSAYpW9x0_KBZSZVG8F/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+  setTimeout(() => {
+    form.style.display = "none";
+    document.getElementById("successMessage").style.display = "block";
+  }, 400); // intentional delay for smoothness
+});
+
+      .catch(() => {
+        submitBtn.innerText = "Submit Request";
+        submitBtn.disabled = false;
+        alert("Something went wrong. Please try again.");
+      });
     });
   });
 </script>
+
 
   
 </body>
