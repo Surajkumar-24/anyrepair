@@ -330,8 +330,13 @@
     padding: 14px 28px;
   }
 
-  /* NAV LINKS (TEMPORARY HIDE) */
   .nav-links {
-    display: none;
-  }
+  display: flex;
+  gap: 16px;
 }
+.nav-links a {
+  font-size: 14px;
+}
+
+}
+
