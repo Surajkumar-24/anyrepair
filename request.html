@@ -26,24 +26,22 @@
 <section class="section">
   <h2>Request a Laptop Repair</h2>
 
-  <div class="form-container">
-    <form id="serviceForm">
+ <div class="form-container">
 
-      <label>Your Name</label>
-      <input type="text" placeholder="Enter your full name" required>
-
-      <label>Phone Number</label>
-      <input type="tel" placeholder="10-digit mobile number" required>
-
-      <label>Location (Area in Pune)</label>
-      <input type="text" placeholder="Eg. Wakad, Baner, Hinjewadi" required>
-
-      <label>Laptop Issue</label>
-      <textarea placeholder="Briefly describe the issue" rows="4" required></textarea>
-
-      <button type="submit" class="btn">Submit Request</button>
-    </form>
+  <div id="successMessage" style="display:none;">
+    <h3>Request Submitted ✅</h3>
+    <p>
+      Thank you for contacting AnyRepair.  
+      Our team will call you shortly to schedule your doorstep diagnosis.
+    </p>
   </div>
+
+  <form id="serviceForm">
+    ...
+  </form>
+
+</div>
+
 </section>
 
 <footer>
@@ -78,9 +76,10 @@
       body: JSON.stringify(formData)
     })
     .then(() => {
-      alert("Your request has been submitted. We’ll contact you shortly.");
-      this.reset();
-    })
+  document.getElementById("serviceForm").style.display = "none";
+  document.getElementById("successMessage").style.display = "block";
+})
+
     .catch(() => {
       alert("Something went wrong. Please try again.");
     });
