@@ -94,43 +94,44 @@
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("serviceForm");
-    const submitBtn = document.getElementById("submitBtn");
+document.addEventListener("DOMContentLoaded", function () {
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+  const form = document.getElementById("serviceForm");
+  const successMsg = document.getElementById("successMessage");
+  const submitBtn = document.getElementById("submitBtn");
 
-      // 🔥 INSTANT FEEDBACK
-      submitBtn.innerText = "Submitting...";
-      submitBtn.disabled = true;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      const formData = {
-        name: form.name.value,
-        phone: form.phone.value,
-        location: form.location.value,
-        issue: form.issue.value
-      };
+    // Immediate UI feedback
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
 
-      fetch("https://script.google.com/macros/s/AKfycbwtQK7TzVmBUSnE2r-LRKwYoMxHiAlQ3t55mkYThyAstsSnsQSAYpW9x0_KBZSZVG8F/exec", {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(formData)
-      })
-      .then(() => {
-  setTimeout(() => {
-    form.style.display = "none";
-    document.getElementById("successMessage").style.display = "block";
-  }, 400); // intentional delay for smoothness
-});
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      location: form.location.value,
+      issue: form.issue.value
+    };
 
-      .catch(() => {
-        submitBtn.innerText = "Submit Request";
-        submitBtn.disabled = false;
-        alert("Something went wrong. Please try again.");
-      });
+    fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(formData)
+    })
+    .then(() => {
+      // 🔥 FORCE UI STATE CHANGE
+      form.style.display = "none";
+      successMsg.style.display = "block";
+    })
+    .catch(() => {
+      submitBtn.innerText = "Submit Request";
+      submitBtn.disabled = false;
+      alert("Something went wrong. Please try again.");
     });
   });
+
+});
 </script>
 
 
