@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Laptop Repair | AnyRepair</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo">Any<span>Repair</span>.in</div>
+
+    <div class="hamburger" id="hamburger">&#9776;</div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="corporate.html">For Corporate Tie-Ups</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <h2>Request a Laptop Repair</h2>
+
+  <div class="form-container">
+    <form action="#" method="post">
+
+      <label>Your Name</label>
+      <input type="text" placeholder="Enter your full name" required>
+
+      <label>Phone Number</label>
+      <input type="tel" placeholder="10-digit mobile number" required>
+
+      <label>Location (Area in Pune)</label>
+      <input type="text" placeholder="Eg. Wakad, Baner, Hinjewadi" required>
+
+      <label>Laptop Issue</label>
+      <textarea placeholder="Briefly describe the issue" rows="4" required></textarea>
+
+      <button type="submit" class="btn">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2025 AnyRepair.in — Doorstep Laptop Repair in Pune
+</footer>
+
+<!-- Hamburger JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+    });
+  });
+</script>
+
+</body>
+</html>
