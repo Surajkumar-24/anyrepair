@@ -340,3 +340,29 @@
 
 }
 
+/* ===== FORCE MOBILE NAV VISIBILITY ===== */
+@media (max-width: 768px) {
+
+  header {
+    position: relative;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 6px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
